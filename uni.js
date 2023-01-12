@@ -6,13 +6,14 @@ fetch('http://localhost:3000/update-chart', {
       // Extract the data for the chart
       const priceUSD = Object.values(data.priceUSD);
       const macd = Object.values(data.macd);
-      console.log(macd)
       const macd_signal = Object.values(data.macd_signal);
       const macd_hist = Object.values(data.macd_hist);
+      console.log(macd_hist)
       
       // call crate chart functions
       createChart1(priceUSD);
-      createChart2(priceUSD);
+      createChart2(macd, macd_signal, macd_hist);
+;
     })
     .catch(error => {
       console.error(error);

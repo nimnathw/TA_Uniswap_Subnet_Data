@@ -17,7 +17,7 @@ def get_data():
 
   # json query to get first 100 daily price data for LINK token from Uniswap v2 subgraph
   query = """query{ tokenDayDatas(where: {token: "0x514910771af9ca656af840dff83e8264ecf986ca"}, 
-            first: 100) {
+            first: 200) {
             priceUSD
             }
          }
@@ -62,9 +62,11 @@ def get_data():
       # MACD
       data_df['macd'], data_df['macd_signal'], data_df['macd_hist'] = talib.MACD(data_df['priceUSD'], fastperiod=12, slowperiod=26, signalperiod=9)
 
-      # Convert the data to a JSON string
+      # Convert the data to a JSON string and print
       print(data_df.to_json())
-      return data_df
+
+      # Return data_df with last 100 values only
+      return data_df.tail(100)
     else:
       print("An error occurred:", response.status_code)
   except requests.exceptions.RequestException as e:
