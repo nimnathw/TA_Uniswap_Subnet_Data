@@ -1,5 +1,4 @@
-# TA_Uniswap_Subnet
-
+# uniswap-subnet-charts
 ### Backend: 
 * flask server 
 * Retrieves data from Uniswap V2 subgraph 
